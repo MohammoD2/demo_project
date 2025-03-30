@@ -1,0 +1,232 @@
+:root {
+    --terracotta: #9C4A3E;
+    --light-beige: #F5E6D3;
+    --muted-teal: #5A7D7A;
+    --deep-umber: #3D2B1F;
+    --soft-white: #FFFCF9;
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--light-beige);
+    color: var(--deep-umber);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background: var(--soft-white);
+    border-radius: 1.5rem;
+    box-shadow: 0 12px 24px rgba(61, 43, 31, 0.1);
+    border: 1px solid rgba(157, 74, 62, 0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--deep-umber);
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+}
+
+.highlight {
+    color: var(--terracotta);
+    position: relative;
+    display: inline-block;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: currentColor;
+    border-radius: 2px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--muted-teal);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.search-form {
+    margin: 2rem 0;
+}
+
+.input-group {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    border: 2px solid var(--muted-teal);
+    border-radius: 50px;
+    background: var(--soft-white);
+    font-size: 1.1rem;
+    color: var(--deep-umber);
+    box-shadow: 0 4px 6px rgba(92, 71, 61, 0.05);
+    transition: var(--transition);
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 8px 15px rgba(92, 71, 61, 0.1);
+    border-color: var(--terracotta);
+}
+
+.search-button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.9rem 2rem;
+    background: linear-gradient(135deg, var(--terracotta), var(--muted-teal));
+    border: none;
+    border-radius: 40px;
+    color: var(--soft-white);
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: var(--transition);
+    box-shadow: 0 4px 6px rgba(92, 71, 61, 0.1);
+}
+
+.search-button:hover {
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 6px 12px rgba(92, 71, 61, 0.15);
+}
+
+.results-container {
+    margin-top: 3rem;
+}
+
+.closest-match {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.match-title {
+    font-size: 1.5rem;
+    color: var(--deep-umber);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.match-text {
+    color: var(--terracotta);
+    font-weight: 600;
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.movie-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+    aspect-ratio: 2/3;
+    border: 1px solid rgba(157, 74, 62, 0.1);
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.movie-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(92, 71, 61, 0.1);
+}
+
+.card-front {
+    background: var(--light-beige);
+}
+
+.movie-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-back {
+    background: linear-gradient(45deg, var(--muted-teal), var(--terracotta));
+    transform: rotateY(180deg);
+    padding: 1.5rem;
+    color: var(--soft-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.movie-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.rating {
+    color: #ffd700;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .search-input {
+        padding: 1rem 1.5rem;
+    }
+    
+    .search-button {
+        padding: 0.7rem 1.5rem;
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMatch AI 🎬 - Smart Movie Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">
+                <span class="icon-popcorn">🍿</span>
+                CineMatch AI
+                <span class="highlight">Recommends</span>
+            </h1>
+            <p class="subtitle">Discover your next favorite movie through our AI-powered recommendations</p>
+        </div>
+
+        <form method="POST" class="search-form">
+            <div class="input-group">
+                <input type="text" name="movie_name" placeholder="Enter a movie title..." required 
+                       class="search-input" autocomplete="off">
+                <button type="submit" class="search-button">
+                    Find Matches
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+
+        {% if match %}
+        <div class="results-container">
+            <div class="closest-match">
+                <h2 class="match-title">
+                    <i class="fas fa-film"></i>
+                    Closest Match:
+                    <span class="match-text">{{ match }}</span>
+                </h2>
+            </div>
+            
+            <div class="recommendations-grid">
+                {% for movie in recommendations %}
+                <div class="movie-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="{{ movie.poster }}" alt="{{ movie.title }}" 
+                                 class="movie-poster" loading="lazy">
+                            <div class="gradient-overlay"></div>
+                        </div>
+                        <div class="card-back">
+                            <h3 class="movie-title">{{ movie.title }}</h3>
+                            <div class="movie-info">
+                                <span class="rating"><i class="fas fa-star"></i> {{ movie.rating }}</span>
+                                <span class="year">{{ movie.year }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
